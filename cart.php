@@ -16,21 +16,22 @@
 
     session_start();
 
-    if (isset($_POST["item"]) && !empty($_POST["item"])) {
-        $_SESSION["item"] = $_POST["item"];
-        if ($_SESSION["item"] <= 3 && is_numeric($_POST["item"])) {
+    if (isset($_POST["submit"])) {
+        if (isset($_POST["item"]) && !empty($_POST["item"]) && is_numeric($_POST["item"]) && $_POST["item"] > 0 && $_POST["item"] <= 3) {
+            $_SESSION["item"] = $_POST["item"];
             echo "Gekozen item: #" . $_SESSION['item'];
         } else {
             echo "Voer een geldig artikel nummer in";
         }
     }
+
     ?>
 
     <div>
         <form action="" method="post" name="item" autocomplete="off">
             <label for="item">Kies een item</label>
             <input type="text" name="item" id="item" />
-            <input type="submit" value="Verstuur" />
+            <input type="submit" name="submit" value="Verstuur" />
         </form>
     </div>
 </body>
